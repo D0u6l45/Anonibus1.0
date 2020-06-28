@@ -46,13 +46,9 @@ export default function Home() {
 
         <Text style={{color:"#e6e6e6", fontSize:40, fontFamily: "" }}>Anonibus</Text>
 
-        {!imagem &&
+        {!imagem ?
           <Image  source={img} style={{margin:30,width:200, height:200}} />
-
-        }
-
-
-        {imagem &&
+          :
         <Image  source={{uri: imagem}} style={{margin:30,width:200, height:200, borderRadius:100, borderWidth:2, borderColor:"#fff"}} />
         }
           <Button  color={"#000"} title={"Escolha a imagem"} on onPress={pegaImg}/>
