@@ -4,7 +4,11 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Chat from './chat'
 import Home from './home'
+//import Teste from './teste'
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { View, ImageBackgroundComponent } from 'react-native';
+import { color } from 'react-native-reanimated';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 export default function App() {
   const Tab = createBottomTabNavigator();
@@ -32,7 +36,12 @@ export default function App() {
         activeTintColor: 'tomato',
         inactiveTintColor: 'gray',
       }}
+      
     >
+       
+       {// <Tab.Screen  name="Teste" component={Teste}/> // 
+       
+      }
         <Tab.Screen name="Home" component={Home}/>
         <Tab.Screen name="Chat" component={Chat} />
         

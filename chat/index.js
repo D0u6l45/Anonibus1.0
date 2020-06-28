@@ -1,7 +1,7 @@
 import React, {useState, useEffect } from 'react';
 import { Ionicons} from '@expo/vector-icons';
 import { 
-  StyleSheet, Text, View, YellowBox, ScrollView, Image, TextInput, TouchableOpacity
+  StyleSheet, Text, Vibration, View, ToastAndroid, ScrollView, Image, TextInput, TouchableOpacity
 } from 'react-native';
 
 import firebase  from '../config/firebase';
@@ -20,6 +20,7 @@ const db = firebase.firestore()
 
 
  const salvar = ()=>{
+   Vibration.vibrate();
    api.post('/enviarMsg', {
      msg: caixaT,
      usuario: user.name,
@@ -27,11 +28,11 @@ const db = firebase.firestore()
 })
 
    .then(function (){
-     //   setMensagens([...mensagens, caixaT])
+     // setMensagens([...mensagens, caixaT])
 
      setCaixaT('')
      scroll.scrollToEnd({animated:true})
-   
+    ToastAndroid.show("Mensagem enviada com sucesso", ToastAndroid.BOTTOM);
     }).catch(function (){
 
 
@@ -99,7 +100,7 @@ const db = firebase.firestore()
        {
          mensagens.length > 0 && mensagens.map(item => (
 
-          <View style={styles.linha_conv}>
+          <View key={item.id} style={styles.linha_conv}>
 
             <Image style={styles.avatar_conv} source={{uri: item.avatar}}/>
 
@@ -126,9 +127,18 @@ const db = firebase.firestore()
       onChangeText={text => setCaixaT(text)}
       value={caixaT} 
        />
-      <TouchableOpacity  onPress={salvar}>
+
+          {caixaT.length > 0 &&
+             <TouchableOpacity  onPress={salvar}>
           <Ionicons style={{margin:3, marginTop:10}}  name={"md-send"} size={32} color={"#fff"} />
        </TouchableOpacity>
+        }
+          {caixaT.length === 0 &&
+          <Ionicons style={{margin:3, marginTop:10,opacity:0.5}}  name={"md-send"} size={32} color={"#fff"} 
+          onPress={()=>{ToastAndroid.show("Mensagem vazia!", ToastAndroid.SHORT)}}
+          />
+          }
+        
        </View>
 
 
