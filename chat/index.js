@@ -1,7 +1,7 @@
 import React, {useState, useEffect } from 'react';
 import { Ionicons} from '@expo/vector-icons';
 import { 
-  StyleSheet, Text, Vibration, View, ToastAndroid, ScrollView, Image, TextInput, TouchableOpacity
+  StyleSheet, Text, Vibration, YellowBox,  View, ToastAndroid, ScrollView, Image, TextInput, TouchableOpacity
 } from 'react-native';
 
 import firebase  from '../config/firebase';
@@ -40,7 +40,7 @@ const db = firebase.firestore()
  }
 
  useEffect(()=>{
- // console.ignoredYellowBox = ['Setting a timer'];
+  console.ignoredYellowBox = ['Setting a timer'];
 
   carregaUserAnon();
 
@@ -52,16 +52,21 @@ const db = firebase.firestore()
         const {msg,usuario,avatar} = change.doc.data()
         const id = change.doc.id
         msg_enviada.push({msg, usuario, avatar, id})
+       
       }
     })
+    
     setMensagens([...msg_enviada])
-
-   //scroll ? scroll.scrollToEnd({animated:true}) : null
+    
+  
 
   })
+  
   return () => {
+    
     pegaMsg()
   }
+  
  },[])
 
 
@@ -129,14 +134,16 @@ const db = firebase.firestore()
        />
 
           {caixaT.length > 0 &&
-             <TouchableOpacity  onPress={salvar}>
-          <Ionicons style={{margin:3, marginTop:10}}  name={"md-send"} size={32} color={"#fff"} />
+             <TouchableOpacity style={styles.enviar}  onPress={salvar}>
+          <Ionicons style={{width: 30 , height: 30, marginLeft: 10}}  name={"md-send"} size={32} color={"#fff"} />
        </TouchableOpacity>
         }
           {caixaT.length === 0 &&
-          <Ionicons style={{margin:3, marginTop:10,opacity:0.5}}  name={"md-send"} size={32} color={"#fff"} 
+           <TouchableOpacity style={styles.enviar}>
+          <Ionicons style={{opacity:0.5,width: 30 , height: 30, marginLeft: 10}}  name={"md-send"} size={32} color={"#fff"} 
           onPress={()=>{ToastAndroid.show("Mensagem vazia!", ToastAndroid.SHORT)}}
           />
+          </TouchableOpacity>
           }
         
        </View>
@@ -181,13 +188,13 @@ const styles = StyleSheet.create({
     backgroundColor:'#000'
   },
   caixa:{
-    padding:3,
-    margin:10,
+    padding:10,
+    marginBottom:10,
     flex:1,
     backgroundColor:'#fff',
     borderWidth:1,
     borderColor:'#999',
-    borderRadius:5
+    borderRadius:50
   },
 
   scroll:{
@@ -211,5 +218,17 @@ const styles = StyleSheet.create({
     paddingLeft:10,
     paddingTop:10,
     marginRight:90,
+  },
+  enviar:{
+      backgroundColor:"#0000CD",
+      width:50,
+      height:50,
+      marginBottom:10,
+      borderRadius:50,
+      alignItems:"center",
+      justifyContent:"center",
+      marginLeft: 5
+      
+
   }
 })

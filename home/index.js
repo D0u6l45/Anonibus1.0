@@ -1,14 +1,39 @@
 import React, {useState, useEffect } from 'react';
 import * as ImagePicker from 'expo-image-picker';
 import { 
- Text, View, ImageBackground,StyleSheet,Button,Image
+ Text, View,StyleSheet,Button,Image,Dimensions
 } from 'react-native';
 
 import img from '../img/pri.png'
 import firebase  from '../config/firebase';
+import LottieView from "lottie-react-native";
+import { TouchableOpacity, Directions } from 'react-native-gesture-handler';
 
 
 export default function Home() {
+
+
+
+
+
+  
+  
+  
+
+  
+  
+
+resetAnimation = () => {
+  this.animation.reset();
+  this.animation.play();
+};
+
+
+
+
+
+
+
 
   const [imagem,setImagem] = useState(null)
 
@@ -30,8 +55,10 @@ export default function Home() {
       allowsEditing: true,
       aspect: [4, 4],
       quality: 1,
+
     });
 
+    setImagem('');
     console.log(result);
 
     if (!result.cancelled) {
@@ -40,19 +67,33 @@ export default function Home() {
     }
   };
   
- 
+  
+       
   return (
-      <View style={styles.container}> 
+    
+      <View style={styles.container}>
 
-        <Text style={{color:"#e6e6e6", fontSize:40, fontFamily: "" }}>Anonibus</Text>
+
+        
+
+        <Text style={{color:"#e6e6e6", fontSize:40}}>Anonibus</Text>
 
         {!imagem ?
-          <Image  source={img} style={{margin:30,width:200, height:200}} />
-          :
+      
+      <Image  source={ img} style={{margin:30,width:200, height:200, borderRadius:100, borderWidth:2, borderColor:"#fff"}} />
+         :
         <Image  source={{uri: imagem}} style={{margin:30,width:200, height:200, borderRadius:100, borderWidth:2, borderColor:"#fff"}} />
         }
-          <Button  color={"#000"} title={"Escolha a imagem"} on onPress={pegaImg}/>
-     
+          <TouchableOpacity style={styles.escolha}  onPress={pegaImg}>
+          <Text  style={{color:"#fff", fontSize:23}}>Escoha a Imagem</Text>
+          </TouchableOpacity>
+        
+          <TouchableOpacity style={styles.escolha}  onPress={()=>{setImagem(null)}}>
+          <Text  style={{color:"#fff", fontSize:23 }}>Apagar</Text>
+          </TouchableOpacity>
+        
+
+
       </View>
           
   );
@@ -68,5 +109,19 @@ const styles = StyleSheet.create({
     borderBottomWidth:1,
     borderColor:'#fff',
     justifyContent:"center",
+  },
+  escolha:{
+    backgroundColor:"#0000CD",	
+    borderWidth:1,
+    borderColor:"#000", 
+    width: 300,
+    borderRadius: 150,
+    height:50,
+    alignItems:"center",
+    justifyContent:"center",
+    margin:5,
+
   }
+
+
 })
