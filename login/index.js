@@ -1,10 +1,10 @@
 import React, {useState,useEffect} from 'react';
 
-import {Text, TextInput,View,Button,Image,Dimensions,ScrollView, SafeAreaView, StyleSheet} from 'react-native';
+import {Text, TextInput,View,Button,Dimensions,ScrollView, SafeAreaView, StyleSheet} from 'react-native';
  
  import Ionicons from 'react-native-vector-icons/Ionicons';
 
-export default function Login(){
+export default function Login({navigation}){
 
 //const larg = Dimensions.get("window").width;
 
@@ -53,6 +53,10 @@ export default function Login(){
                  
                  }} />
            
+                 
+           <Button  title="outra pag" onPress={()=>navigation.push('Outra')} />
+           <Button  title="outra pag_params" 
+           onPress={()=>navigation.push('Outra', {name:"logado"})} />
            
             </>
           </SafeAreaView>

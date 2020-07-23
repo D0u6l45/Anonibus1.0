@@ -88,7 +88,7 @@ resetAnimation = () => {
           <Text  style={{color:"#fff", fontSize:23}}>Escoha a Imagem</Text>
           </TouchableOpacity>
         
-          <TouchableOpacity style={styles.escolha}  onPress={()=>{setImagem(null)}}>
+          <TouchableOpacity style={styles.escolha}   onPress={()=>setImagem(null)} >
           <Text  style={{color:"#fff", fontSize:23 }}>Apagar</Text>
           </TouchableOpacity>
         

@@ -2,32 +2,46 @@
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-//import { createStackNavigator} from '@react-navigation/stack';
+import { createStackNavigator} from '@react-navigation/stack';
 //import SignIn from './base';
 import Chat from './chat'
 import Home from './home'
+import Outra from './home/outra'
 import Login from './login'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
+const Tab = createBottomTabNavigator();
+const stack = createStackNavigator();
 
 //const AuthStack = createStackNavigator();
+const homeStackScreen = () =>(
+ 
+  <stack.Navigator  headerMode={"none"} >
+      <stack.Screen name="Chat" component={Chat} /> 
+      <stack.Screen name="Outra" component={Outra} />
+
+  </stack.Navigator>
+  
+
+)
+
+
 
 
 export default ()=> {
-  const Tab = createBottomTabNavigator();
- 
+  
+
+
+
+
+
   return (
+
+
+
+    
     <NavigationContainer>
 
-
-  {/*    
-<AuthStack.Navigator>
-<AuthStack.Screen name= "SignIn" component={SignIn} options={{title:"Acessar"}}/>
-<AuthStack.Screen name= "CreateAccount" component={CreateAccount} options= {{title:"Acessar"}}/>
-
-
-</AuthStack.Navigator>
-  */}
 
       <Tab.Navigator 
       screenOptions={({ route }) => ({
@@ -63,7 +77,7 @@ export default ()=> {
        
        <Tab.Screen name="Login" component={Login}/>
         <Tab.Screen name="Home" component={Home}/>
-        <Tab.Screen name="Chat" component={Chat} />
+        <Tab.Screen name="Chat" component={homeStackScreen} />
         
         
       </Tab.Navigator>

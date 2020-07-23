@@ -9,7 +9,7 @@ import api from '../services/axios';
 import axios from 'axios';
 
 
-export default function Chat() {
+export default function Chat({navigation}) {
 const [user,setUser] = useState('');
 const [caixaT, setCaixaT] = useState('');
 const [mensagens, setMensagens] = useState(['']);
@@ -104,6 +104,7 @@ const db = firebase.firestore()
     <ScrollView style={styles.scroll} ref={(view)=>{setScroll(view)}}>
        {
          mensagens.length > 0 && mensagens.map(item => (
+           <TouchableOpacity onLongPress={()=>{navigation.push('Outra')}}>
 
           <View key={item.id} style={styles.linha_conv}>
 
@@ -111,7 +112,7 @@ const db = firebase.firestore()
 
 
             <View style={{marginTop: 7, flexDirection:"column"}}>
-            <Text style={{color:"#fff", }}>{item.usuario}</Text>
+            <Text style={{color:"#fff" }}>{item.usuario}</Text>
 
           <Text style={{color:"#fff"}}>{item.msg}</Text>
 
@@ -119,7 +120,7 @@ const db = firebase.firestore()
             </View>
           
           </View>
-
+          </TouchableOpacity>
          ))
        }
     </ScrollView>
