@@ -15,7 +15,7 @@ export default function CreateAccount() {
     <text>Create Account</text>
     <button  title={"botao"} onKeyPress={()=> alert("botao")}  />
    </>       
-  );
+  
 }
  
 

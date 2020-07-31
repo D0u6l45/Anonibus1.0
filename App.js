@@ -8,6 +8,7 @@ import Chat from './chat'
 import Home from './home'
 import Outra from './home/outra'
 import Login from './login'
+import Teste from './chat/styles'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Tab = createBottomTabNavigator();

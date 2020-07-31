@@ -25,7 +25,7 @@ export default function Login({navigation}){
               
 
 
-               <TextInput placeholder={"                    Usuario"} 
+               <TextInput placeholder={"Usuario"} 
                style={{
                  width: 250,
                   color:"#fff",
@@ -39,7 +39,7 @@ export default function Login({navigation}){
                </View>
             
 
-               <TextInput secureTextEntry={true} placeholder={"                    Senha"} 
+               <TextInput secureTextEntry={true} placeholder={"Senha"} 
                style={{
                  width: 250, 
                  textAlign:"left",

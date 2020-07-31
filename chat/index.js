@@ -104,7 +104,7 @@ const db = firebase.firestore()
     <ScrollView style={styles.scroll} ref={(view)=>{setScroll(view)}}>
        {
          mensagens.length > 0 && mensagens.map(item => (
-           <TouchableOpacity onLongPress={()=>{navigation.push('Outra')}}>
+           <TouchableOpacity onLongPress={()=>{navigation.push('Outra',{name: item.usuario, caminho: item.avatar})}}>
 
           <View key={item.id} style={styles.linha_conv}>
 
